@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+   <script type="text/javascript" >
+    Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+    let person={
+      name:'张三',
+      sex:'男',
+      age:18
+    }
+
+    Object.defineProperty(person,'age',{ //不可枚举，不可以在控制台修改
+      value:18,
+      enumerable,//控制属性是否可以枚举，默认为false
+      writable:true,//控制属性是否可以被修改
+      configurable:true,//控制属性是否可以呗删除
+    
+      get:function(){
+        console.log('有人读取')
+        return 'hello'
+    },
+
+      set(value){
+          console.log('有人修改了age值,且值是',value)
+      }
+    })
+
+    console.log(Object.keys(person));
+    console.log(person)
+  </script>
+  </body>
+  
+</html>

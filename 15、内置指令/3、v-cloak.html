@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      [v-cloak]{
+        display:none;
+      }
+    </style>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+   <div id="root">
+      <h2 v-cloak>{{name}}</h2>
+   </div>
+  </body>
+  <!-- 
+    v-cloak指令(没有值):
+      1、本质是一个特殊属性，Vue实例创建完毕并接管容器后，会删除v-cloak属性
+      2、使用css配合v-cloak可以解决网速慢时页面展示出的{{xxx}}问题
+   -->
+  <script type="text/javascript" >
+    Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+    new Vue({
+      el:'#root',
+      data:{
+        name:'尚硅谷',
+      },
+    })
+  </script>
+</html>

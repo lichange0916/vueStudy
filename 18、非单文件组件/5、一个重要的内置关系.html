@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+  <!-- 
+    因为组件是可复用的Vue实例，因为它们与new Vue接受相同的选项，例如data、computed、watch、methods
+    一级生命周期钩子等，仅有例外像是el这样的Vue特有的选项
+
+    1、一个重要的内置关系:VueComponent.prototype.__proto__ === Vue.prototype
+    2、为什么要有这个关系：让组件实例对象(vc)可以访问到Vue原型上的属性、方法
+  
+  -->
+
+   <div id="root">
+      <school></school>
+   </div>
+  </body>
+  <script type="text/javascript" >
+    Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+    Vue.prototype.x=99;
+
+    //定义一个实例函数
+  //  function Demo(){
+  //   this.a=1;
+  //   this.b=2;
+  //  }
+  //   //创建一个Demo的实例对象
+  //   const d = new Demo();
+
+  //   console.log(Demo.prototype);//显示原型属性
+
+  //   console.log(d.__proto__);//隐式原型属性
+
+  //   console.log(Demo.prototype === d.__proto__);
+  
+  //   //程序员通过显示原型属性操作原型，追加一个x属性，值为99
+  //   Demo.prototype.x=99;
+
+  //   console.log('@,'+d);
+
+    
+    //定义school组件
+    const school = Vue.extend({
+        name:'school',
+        template:`
+        <div>
+          <h2>学校名称:{{name}}</h2>
+          <h2>学校地址:{{address}}</h2>  
+          <button @click="showX">点我输出x</button>
+        </div>
+        `,
+      data(){
+        return{
+          name:'尚硅谷',
+          address:'北京',
+         }
+        },
+        methods: {
+          showX(){
+            alert(this.x)
+          },
+        },
+      })
+  
+
+    //创建一个vm
+    const vm=new Vue({
+      el:"#root",
+      data:{
+        msg:'你好'
+      },
+      components:{
+        school,
+      },
+    })
+
+  
+  </script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+   <script type="text/javascript" >
+    Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+        let obj = {x:100}
+        let obj2={y:200}
+
+        Object.defineProperty(obj2,'x',{
+            get(){
+                return obj.x
+            }
+        })
+
+    console.log(Object.keys(person));
+    console.log(person)
+  </script>
+  </body>
+  
+</html>

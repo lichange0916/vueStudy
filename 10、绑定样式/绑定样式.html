@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>绑定样式</title>
+    <style>
+      /* .happly{
+      
+      }
+
+      .basic{}
+
+      .sad{}
+
+      .normal{} */
+    </style>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+      <!-- 
+        1.class样式
+            写法：class="xxx" xxx可以是字符串、对象、数组
+            字符串写法适用于：类名不确定，要动态获取
+            对象写法适用于：要绑定多个样式，个数不确定，名字也不确定
+            数组写法适用于：要绑定多个样式，格式确定。名字也确定，但不确定用不用
+
+        2.style样式
+            :style="{fontSize: xxx}" 其中xxx时动态值
+            :style="[a,b]" 其中a、b时样式对象
+       -->
+  <body>
+    <!-- 绑定class样式--字符串写法，适用于:样式的类名不确定，需要动态指定 -->
+   <div class="basic" :class="mood" @click="changeMood">test</div>
+    <br>
+    <!-- 绑定class样式--字符串写法，适用于:让绑定的样式不确定，名字也不确定 
+          vm.arr.shift() 删除classArr里面的第一个元素
+          vm.arr.push()  给classArr里面添加元素-->
+   <div class="basic" :class="classArr" @click="changeMood">test</div>
+    <!-- 绑定class样式--对象写法，适用于:绑定的样式个数确定，名字也确定，但要动态决定用不用 -->
+   <div class="basic" :class="classObj">{{name}}</div><br>
+   <!-- 绑定class样式--对象写法-->
+   <div class="basic" :style="styleObj">{{name}}</div>><br>
+   <!-- 绑定class样式--数组写法-->
+   <div class="basic" :style="styleArr">{{name}}</div>><br>
+  </body>
+  <script type="text/javascript" >
+    Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+    const vm = new Vue({
+      el:'#root',
+      data:{
+        name:'尚硅谷',
+        mood:'normal',
+        classArr:['happly','sad','normal'],
+        classObj:{
+          happly:false,
+          sad:false,
+          normal:true,
+        },
+        styleObj:{
+          fontSize: '40px',
+          color:'red',
+          backgroundColor:'orange'
+        },
+        styleArr:[
+          {fontSize: '40px',
+           color:'blue'
+          },
+          {
+            backgroundColor:'gray'
+          }
+        ]
+      },
+      methods:{
+        changeMood(){
+          // this.mood='happy'
+          // 随机样式
+          const arr =['happy','sad','normal']
+          const index = Math.floor(Math.random()*3)
+          this.mood=arr[idnex]
+        },
+      }
+    })
+  </script>
+</html>
